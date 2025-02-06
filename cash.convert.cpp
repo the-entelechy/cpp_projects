@@ -11,7 +11,7 @@ struct foreignCurrency {
 struct usdBank{
   double usd {0.00};
 };
-void currencyTracker(foreignCurrency &c){
+void currencyTracker(foreignCurrency &c, usdBank &b){
 // Prompt currency 
 // Enter currency for each
 // output total USD after converted
@@ -20,7 +20,9 @@ void currencyTracker(foreignCurrency &c){
   std::cout << "You Entered " << c.currency << " " << c.name << '\n';
   c.convertedCurr = c.currency * c.conversionRate;
   std::cout << "This is: $" << c.convertedCurr << '\n';
+  b.usd += c.convertedCurr;
   std::cout << &c << '\n';
+  std::cout << "Total: $" << b.usd << '\n';
 };
 
 //get struct,name,currency
@@ -36,9 +38,9 @@ int main(){
   currencyCreate(Colombia, "Colombian Peso", 0.00024);
   currencyCreate(Brazil, "Brazilian Reais",0.17);
   currencyCreate(Peru, "Peruvian Soles",0.27);
-  currencyTracker(Brazil);
-
-  std::cout << &Brazil << " in Main"; //address matches inside function
+  currencyTracker(Brazil, myBank);
+  //std::cout << myBank.usd;
+  //std::cout << &Brazil << " in Main"; //address matches inside function
 
 
 
