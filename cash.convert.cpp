@@ -6,6 +6,7 @@ struct foreignCurrency {
   double currency;
   double convertedCurr;
   double conversionRate;
+  foreignCurrency* ptr = nullptr;
 };
 
 struct usdBank{
@@ -26,19 +27,26 @@ void currencyTracker(foreignCurrency &c, usdBank &b){
 };
 
 //get struct,name,currency
-void currencyCreate(foreignCurrency &c, std::string n, double conv) {
+void currencyCreate(foreignCurrency &c, std::string n, double conv, std::vector<foreignCurrency*>* ptr) {
   c.name = n;
   c.conversionRate = conv;
+  c.ptr = &c;
+  ptr->push_back(c.ptr);
+  std::cout << ptr->size() << '\n';
+
   //std::cout << c.name <<'\n' << &c << '\n'; 
 };
 
 int main(){
+  bool banking = true;
   foreignCurrency Colombia, Brazil, Peru;
+  std::vector<foreignCurrency*> V;
   usdBank myBank;
-  currencyCreate(Colombia, "Colombian Peso", 0.00024);
-  currencyCreate(Brazil, "Brazilian Reais",0.17);
-  currencyCreate(Peru, "Peruvian Soles",0.27);
-  currencyTracker(Brazil, myBank);
+  currencyCreate(Colombia, "Colombian Peso", 0.00024, &V);
+  //currencyCreate(Brazil, "Brazilian Reais",0.17);
+  //currencyCreate(Peru, "Peruvian Soles",0.27);
+  std::cout << V[0]->name << '\n';
+  
   //std::cout << myBank.usd;
   //std::cout << &Brazil << " in Main"; //address matches inside function
 
