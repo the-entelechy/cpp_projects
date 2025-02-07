@@ -26,8 +26,6 @@ void currencyTracker(std::vector<foreignCurrency*>* ptr, usdBank &b){
     b.usd += convertedCurr;
     std::cout << "Total: $" << b.usd << '\n';
   };
-    
-  
 };
 
 //get struct,name,currency
@@ -37,8 +35,7 @@ void currencyCreate(foreignCurrency &c, std::string n, double conv, std::vector<
   c.ptr = &c;
   ptr->push_back(c.ptr);
   //std::cout << ptr->size() << '\n';
-
-  //std::cout << c.name <<'\n' << &c << '\n'; 
+  //std::cout << c.name <<'\n' << &c << '\n';
 };
 
 int main(){
@@ -55,8 +52,5 @@ int main(){
   currencyTracker(ptr,myBank);
   //std::cout << myBank.usd;
   //std::cout << &Brazil << " in Main"; //address matches inside function
-
-
-
 
 };
